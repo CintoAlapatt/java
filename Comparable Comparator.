@@ -1,0 +1,102 @@
+In Java, both **`Comparable`** and **`Comparator`** are interfaces used to define sorting and ordering logic, but they serve different purposes and use cases.
+
+Here's a clear breakdown:
+
+---
+
+## 1. `Comparable`
+
+- **Purpose**: Defines a **natural ordering** for objects of the implementing class.
+- **Method**: 
+```java
+public int compareTo(T o);
+```
+- **Usage**: Objects implement the `Comparable` interface to define their default ordering.
+
+**Example**:
+
+```java
+class Student implements Comparable<Student> {
+    int rollNo;
+    String name;
+
+    public Student(int rollNo, String name) {
+        this.rollNo = rollNo;
+        this.name = name;
+    }
+
+    // Natural ordering based on rollNo
+    @Override
+    public int compareTo(Student other) {
+        return Integer.compare(this.rollNo, other.rollNo);
+    }
+}
+
+// Sorting
+Collections.sort(studentList); // sorts based on natural ordering (rollNo)
+```
+
+---
+
+## 2. `Comparator`
+
+- **Purpose**: Defines an **external/custom ordering** separate from the object's natural ordering.
+- **Method**:
+```java
+public int compare(T o1, T o2);
+```
+- **Usage**: Used when you want multiple ways to sort objects or when sorting objects that don't implement `Comparable`.
+
+**Example**:
+
+```java
+class Student {
+    int rollNo;
+    String name;
+
+    public Student(int rollNo, String name) {
+        this.rollNo = rollNo;
+        this.name = name;
+    }
+}
+
+// Comparator to sort by student name
+Comparator<Student> nameComparator = new Comparator<Student>() {
+    @Override
+    public int compare(Student s1, Student s2) {
+        return s1.name.compareTo(s2.name);
+    }
+};
+
+// Sorting
+Collections.sort(studentList, nameComparator); // sorts based on name
+```
+
+---
+
+## Key Differences
+
+| Aspect                   | `Comparable`                      | `Comparator`                     |
+|--------------------------|-----------------------------------|----------------------------------|
+| **Ordering Type**        | Natural ordering                   | Custom/external ordering         |
+| **Implementation**       | Implemented by the class itself    | Implemented separately           |
+| **Method signature**     | `compareTo(T o)`                   | `compare(T o1, T o2)`            |
+| **Number of orderings**  | Only one natural ordering per class| Can create multiple comparators  |
+| **Sorting method usage** | `Collections.sort(list)`           | `Collections.sort(list, comparator)` |
+
+---
+
+## When to Use Each?
+
+- Use **`Comparable`**:
+  - When there's a single, clear, natural order.
+  - For common or default sorting behavior.
+
+- Use **`Comparator`**:
+  - When you require multiple sorting criteria.
+  - When sorting behavior may change or vary dynamically.
+  - When you can't modify the original class (like third-party libraries).
+
+---
+
+This distinction helps in writing clean, flexible, and maintainable Java code.
