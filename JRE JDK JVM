@@ -1,0 +1,61 @@
+## 📍 **1. JVM, JRE, and JDK**
+
+- **JVM (Java Virtual Machine):**
+  - Platform-independent virtual machine that executes Java bytecode.
+  - Provides portability ("write once, run anywhere").
+
+- **JRE (Java Runtime Environment):**
+  - Provides the environment for running Java applications.
+  - Includes JVM + core libraries and runtime libraries.
+
+- **JDK (Java Development Kit):**
+  - Includes tools to develop, compile, debug, and run Java applications.
+  - Contains JRE + development tools (e.g., `javac`, `debugger`, etc.).
+
+## 📍 **3. Differences Between JDK, JRE, and JVM:**
+
+| JVM                             | JRE                           | JDK                               |
+|---------------------------------|-------------------------------|-----------------------------------|
+| Executes Java bytecode          | JVM + libraries (no compiler) | JRE + compiler & development tools|
+| Abstract machine                | Runtime environment           | Development environment           |
+| Platform-dependent (implementation) | Platform-dependent           | Platform-dependent                |
+
+- **Simple analogy**:
+  - JVM → The "engine" that runs Java programs.
+  - JRE → Car (engine + basic facilities) you drive to run Java apps.
+  - JDK → Complete garage (car + tools to build/maintain Java apps).
+
+---
+
+## 📍 **4. Garbage Collection in Java:**
+
+- **Garbage Collection (GC)** automatically manages memory by reclaiming unused objects.
+- Objects no longer referenced are identified and removed from heap memory.
+- Runs automatically in the background, freeing developers from manual memory management.
+
+- **Process:**
+  1. Mark (identify live objects)
+  2. Sweep (remove unused objects)
+  3. Compact (optional; reorganize memory for efficiency)
+
+---
+
+## 📍 **5. Stack vs. Heap Memory:**
+
+| Stack Memory                           | Heap Memory                          |
+|----------------------------------------|--------------------------------------|
+| Stores method calls & local variables  | Stores objects & instance variables  |
+| Faster, follows LIFO (Last-In-First-Out)| Slower access, large memory space    |
+| Thread-specific, short-lived           | Shared, longer-lived objects         |
+| Automatic management                   | Managed by Garbage Collector         |
+
+**Example:**
+
+```java
+int x = 5;            // stored on stack
+String s = new String("Hello"); // object 's' stored on heap, reference stored on stack
+```
+
+---
+
+These concise explanations should help you understand and recall these core Java concepts quickly!
