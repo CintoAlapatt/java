@@ -1,0 +1,46 @@
+Here are the key differences between **HashMap**, **Hashtable**, and **ConcurrentHashMap** in Java:
+
+| Feature                 | **HashMap**                               | **Hashtable**                          | **ConcurrentHashMap**                     |
+|-------------------------|-----------------------------------------  |-----------------------------------------|--------------------------------------------|
+| **Synchronization**     | Not synchronized (non-thread-safe)        | Fully synchronized (thread-safe)        | Thread-safe using segment-level locks     |
+| **Performance**         | Fastest (single-threaded)                 | Slowest due to complete synchronization | Better performance under concurrency      |
+| **Null keys/values**    | Allows one null key & multiple null values | Does **not** allow null keys or values  | Does **not** allow null keys or values    |
+| **Iterator behavior**   | Fail-fast (throws ConcurrentModificationException) | Fail-fast                              | Fail-safe (doesn't throw exceptions, works on snapshot) |
+| **Inheritance**         | Extends `AbstractMap`                   | Extends `Dictionary` (legacy class)     | Extends `AbstractMap`                     |
+| **Concurrent Usage**    | Not suitable directly for multi-threaded environments | Thread-safe but performance overhead | Optimized for concurrent reads/writes     |
+| **When Introduced**     | Java 1.2                                | Java 1.0 (legacy)                       | Java 1.5 (part of concurrent package)     |
+
+### When to use each?
+
+- **HashMap**:  
+  Ideal for single-threaded environments or when explicit external synchronization is provided.  
+  Fastest performance in non-concurrent scenarios.
+
+- **Hashtable**:  
+  Generally considered legacy and not recommended for new development due to performance penalties.  
+  Exists primarily for backward compatibility.
+
+- **ConcurrentHashMap**:  
+  Best suited for multi-threaded or concurrent applications. Provides thread-safety with better performance compared to Hashtable.
+
+### Example Usage:
+
+- **HashMap**:
+```java
+Map<String, String> map = new HashMap<>();
+map.put("key", "value");
+```
+
+- **Hashtable**:
+```java
+Hashtable<String, String> table = new Hashtable<>();
+table.put("key", "value");
+```
+
+- **ConcurrentHashMap**:
+```java
+ConcurrentHashMap<String, String> concurrentMap = new ConcurrentHashMap<>();
+concurrentMap.put("key", "value");
+```
+
+**Recommended:** For modern, thread-safe applications, prefer **ConcurrentHashMap**.
