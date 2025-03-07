@@ -1,0 +1,62 @@
+The **SOLID principles** are a set of design guidelines in object-oriented programming that promote maintainable and scalable software. Introduced by Robert C. Martin ("Uncle Bob"), SOLID is an acronym representing five key principles:
+
+### 1. **Single Responsibility Principle (SRP)**
+- **Definition:**  
+  A class should have only one reason to change, meaning it should have only one responsibility.
+  
+- **Purpose:**  
+  Simplifies classes, makes them more focused, easier to maintain, and reduces side-effects when modifying functionality.
+
+- **Example:**  
+  Instead of one class handling user authentication, email notifications, and database storage, separate these into distinct classes, each handling its own responsibility.
+
+### 2. **Open-Closed Principle (OCP)**
+- **Definition:**  
+  Software entities (classes, modules, functions) should be open for extension but closed for modification.
+
+- **Purpose:**  
+  Enables adding new functionality without altering existing code, reducing bugs and unintended side-effects.
+
+- **Example:**  
+  Use interfaces and inheritance to add new payment methods to an e-commerce application without altering the existing payment logic.
+
+### 3. **Liskov Substitution Principle (LSP)**
+- **Definition:**  
+  Subtypes (subclasses/derived classes) must be substitutable for their base (parent) types without altering the correctness of the program.
+
+- **Purpose:**  
+  Ensures that inheritance hierarchies are logically consistent, preventing unexpected behaviors when using polymorphism.
+
+- **Example:**  
+  If you have a class `Bird` with method `fly()`, a subclass like `Penguin` that can't fly shouldn't inherit directly from `Bird`. It violates LSP, as substituting a `Bird` object with a `Penguin` changes the expected behavior.
+
+### 4. **Interface Segregation Principle (ISP)**
+- **Definition:**  
+  Clients should not be forced to depend upon interfaces they don't use. Favor many smaller, specific interfaces over fewer general ones.
+
+- **Purpose:**  
+  Avoids bloated interfaces, makes code cleaner, and prevents classes from implementing methods they don't need.
+
+- **Example:**  
+  Instead of a single `Printer` interface with methods like `print()`, `fax()`, and `scan()`, use separate interfaces such as `Printable`, `Faxable`, and `Scannable`. Classes then implement only the interfaces they need.
+
+### 5. **Dependency Inversion Principle (DIP)**
+- **Definition:**  
+  Depend on abstractions, not on concrete implementations. High-level modules should not depend on low-level modules; both should depend on abstractions (interfaces or abstract classes).
+
+- **Purpose:**  
+  Encourages loose coupling, making the system flexible, testable, and easier to maintain.
+
+- **Example:**  
+  Instead of depending directly on a concrete class `MySQLDatabase`, depend on an abstract interface `Database`. This allows switching easily between different databases (MySQL, MongoDB, PostgreSQL) without modifying the high-level code.
+
+### Summary of SOLID:
+| Principle | Meaning | Benefit |
+|-----------|---------|---------|
+| SRP       | Single Responsibility | Easier maintenance, clarity |
+| OCP       | Open for extension, closed for modification | Flexibility, less risk |
+| LSP       | Substitutable subclasses | Safe polymorphism, predictability |
+| ISP       | Multiple smaller interfaces | Reduced complexity, cleaner code |
+| DIP       | Depend on abstractions | Loose coupling, ease of testing |
+
+Following SOLID principles leads to robust, maintainable, and adaptable software systems.
