@@ -1,0 +1,73 @@
+Here's a clear breakdown of these Java exception-handling concepts:
+
+## 1. Checked vs. Unchecked Exceptions:
+
+| Feature                  | Checked Exceptions                                 | Unchecked Exceptions                          |
+|--------------------------|----------------------------------------------------|-----------------------------------------------|
+| **Checked at compile-time?** | Yes                                                | No                                            |
+| **Subclass of**              | `Exception` (except `RuntimeException`)            | `RuntimeException` or `Error`                 |
+| **Examples**                 | `IOException`, `SQLException`, `ClassNotFoundException` | `NullPointerException`, `ArrayIndexOutOfBoundsException`, `ArithmeticException` |
+| **Must explicitly handle or declare?** | Yes                                                | No (optional)                                 |
+| **Cause**                    | External circumstances (e.g., file system, network) | Programming errors (bugs, logic issues)       |
+
+**Checked Exceptions**:
+- Compiler requires handling them explicitly using `try-catch` or declaring them using the `throws` keyword.
+- Indicate conditions that the application might reasonably anticipate and recover from.
+
+**Unchecked Exceptions**:
+- Occur due to errors in code logic or programming mistakes.
+- Compiler does **not** require explicit handling.
+
+---
+
+## 2. `try-catch-finally` Blocks:
+
+```java
+try {
+    // code that might throw an exception
+} catch (ExceptionType1 ex1) {
+    // handle ExceptionType1
+} catch (ExceptionType2 ex2) {
+    // handle ExceptionType2
+} finally {
+    // code here always executes (optional block)
+}
+```
+
+- **`try` block:** Contains the code that might throw exceptions.
+- **`catch` block(s):** Executes if the exception specified occurs. You can have multiple `catch` blocks for handling different exceptions.
+- **`finally` block:** Always executes regardless of whether an exception occurs or not. Commonly used for cleanup actions like closing resources (`streams`, `connections`, etc.).
+
+### Quick points about `finally`:
+- Executes even if there’s a `return` statement in the `try` or `catch` block.
+- Will not execute only if `System.exit()` is called before reaching it, or if JVM crashes.
+
+---
+
+## 3. Difference between `throw` and `throws`:
+
+| Feature           | `throw`                      | `throws`                        |
+|-------------------|------------------------------|---------------------------------|
+| **Purpose**       | Used to explicitly throw an exception | Declares that a method might throw exceptions |
+| **Syntax**        | `throw new Exception();`     | `method() throws Exception {}`  |
+| **Usage Location**| Within method bodies         | Method signature declaration    |
+| **Number of Exceptions**| Throws a single exception instance at a time | Can declare multiple exceptions |
+
+### Example of `throw`:
+```java
+if (age < 0) {
+    throw new IllegalArgumentException("Age cannot be negative");
+}
+```
+
+### Example of `throws`:
+```java
+public void readFile() throws IOException {
+    FileReader fr = new FileReader("file.txt");
+    // ...
+}
+```
+
+---
+
+These concepts ensure robust exception handling and enhance Java application reliability.
