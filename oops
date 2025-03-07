@@ -1,0 +1,72 @@
+
+3. Encapsulation
+
+Bundling data (attributes) and methods into a single unit (class).
+Provides data hiding by restricting direct access to internal state.
+
+2. Inheritance
+
+Mechanism for one class (child/subclass) to inherit attributes and methods from another class (parent/superclass).
+Enables code reusability and hierarchical classification.
+Types:
+
+Single: One class inherits from one superclass.
+Multilevel: Class inherits from another class, which itself inherits from another.
+Hierarchical: Multiple subclasses inherit from a single superclass.
+
+3. Polymorphism
+
+Ability of objects to behave differently based on their context.
+One interface, many implementations (methods behave differently in subclasses).
+Types:
+
+Compile-time (Static): Method overloading.
+Runtime (Dynamic): Method overriding.
+
+4. Encapsulation
+
+Wrapping data (attributes) and methods (functions) into a single unit (class).
+Uses access modifiers (private, public, protected) to restrict direct access.
+Benefits:
+
+Increased security.
+Easier maintenance.
+
+5. Abstraction
+
+Simplifies complexity by hiding unnecessary details and showing only essential features.
+Implemented using abstract classes and interfaces.
+
+
+Quick Example (Java):
+java
+Copy
+Edit
+// Class demonstrating encapsulation, inheritance, and polymorphism
+class Animal {
+    void sound() {
+        System.out.println("Animal makes a sound");
+    }
+}
+
+class Dog extends Animal {
+    @Override
+    void sound() {
+        System.out.println("Dog barks");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Animal a = new Dog(); // Polymorphism
+        a.sound(); // Outputs: Dog barks
+    }
+}
+
+Summary of OOP:
+Object: Instance of class with state and behavior.
+Class: Template to create objects.
+Inheritance: Reusability and hierarchical relationships.
+Encapsulation: Data hiding and modularity.
+Polymorphism: Flexibility through overriding and overloading.
+These core principles allow for designing robust, modular, and maintainable software.
