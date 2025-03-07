@@ -1,0 +1,98 @@
+Here are clear, concise answers suitable for a Java technical interview:
+### **1. Core Principles of OOP**
+
+- **Inheritance:** Enables new classes to reuse and extend the properties and behaviors of existing classes.
+- **Encapsulation:** Bundles data (attributes) and methods (behaviors) within a class and restricts direct access from outside, typically using getters and setters.
+- **Abstraction:** Exposes only necessary details while hiding complex implementation details, usually through abstract classes or interfaces.
+- **Polymorphism:** Allows a single interface or method to represent different underlying forms (behaviors), typically achieved through method overloading and overriding.
+
+### **2. Method Overloading vs. Method Overriding**
+
+| Method Overloading | Method Overriding |
+|--------------------|-------------------|
+| Occurs within the same class | Occurs in subclasses |
+| Same method name, different parameters (type, number, or order) | Same method signature (name and parameters) |
+| Compile-time polymorphism | Run-time polymorphism |
+| Improves readability and convenience | Provides specific implementation for subclass |
+
+**Example:**
+
+```java
+// Method Overloading
+class Calculator {
+    int add(int a, int b) {
+        return a + b;
+    }
+    double add(double a, double b) {
+        return a + b;
+    }
+}
+
+// Method Overriding
+class Animal {
+    void sound() {
+        System.out.println("Animal makes sound");
+    }
+}
+class Dog extends Animal {
+    @Override
+    void sound() {
+        System.out.println("Dog barks");
+    }
+}
+```
+
+---
+
+### **3. Abstract Class vs. Interface**
+
+| Abstract Class                                   |                 Interface |
+|----------------                                  |-----------|
+| Can contain abstract and concrete methods        | Contains only abstract methods (default methods since Java 8 are exceptions) |
+| Can maintain state (instance variables)          | Cannot maintain state (variables are implicitly public static final) |
+| Supports constructors                            | Does not support constructors |
+| Classes can extend only one abstract class       | Classes can implement multiple interfaces |
+
+**Use Cases:**
+
+- **Abstract Class:** When classes share a common implementation or need to maintain state.
+- **Interface:** Defining contracts without enforcing implementation details.
+
+---
+
+### **4. Multiple Inheritance in Java**
+
+- Java **doesn't support multiple inheritance directly** through classes (to avoid the "diamond problem").
+- However, Java **achieves multiple inheritance through interfaces**:
+  - A class can implement multiple interfaces, thus inheriting behavior from multiple sources.
+
+**Example:**
+
+```java
+interface A {
+    void methodA();
+}
+interface B {
+    void methodB();
+}
+
+class MultipleInheritanceDemo implements A, B {
+    public void methodA() { System.out.println("A method"); }
+    public void methodB() { System.out.println("B method"); }
+}
+```
+
+---
+
+### **5. Why is Java not fully object-oriented?**
+
+Java is not considered 100% object-oriented because:
+
+- **Primitive Types:** Java supports primitive data types (`int`, `char`, `float`, `boolean`, etc.) that aren't objects.
+- **Static:** Java allows static methods and variables, which can be accessed without creating an object instance.
+
+To be fully object-oriented, every data type should be treated as an object, which isn't the case in Java.
+
+---
+
+This should provide clear, precise responses suitable for interview preparation or technical discussions.
