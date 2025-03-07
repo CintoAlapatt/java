@@ -1,0 +1,90 @@
+In Java, the `equals()` and `hashCode()` methods are closely related and used to determine equality between objects and manage their storage in collections (especially hash-based structures like `HashSet` and `HashMap`).
+
+## 1. `equals()` Method:
+- The `equals()` method determines whether two objects are logically equivalent (i.e., they have the same state or data).
+- By default, `equals()` from the `Object` class compares object references (memory addresses), meaning two references are considered equal only if they refer to the same object.
+
+### Overriding the `equals()` method:
+To provide logical equality, you must override `equals()`:
+
+```java
+@Override
+public boolean equals(Object obj) {
+    if (this == obj) return true;                 // same object reference
+    if (obj == null || getClass() != obj.getClass()) return false; // null or different type
+    
+    MyClass other = (MyClass) obj;
+    return Objects.equals(this.field1, other.field1) && 
+           Objects.equals(this.field2, other.field2);
+}
+```
+
+### Guidelines for implementing `equals()`:
+- Reflexive: For any non-null reference `x`, `x.equals(x)` must be true.
+- Symmetric: For any non-null references `x` and `y`, `x.equals(y)` must return true if and only if `y.equals(x)` returns true.
+- Transitive: For any non-null references `x`, `y`, and `z`, if `x.equals(y)` is true and `y.equals(z)` is true, then `x.equals(z)` must also be true.
+- Consistent: Repeated invocations should always return the same result if the object's state doesn't change.
+- For any non-null reference `x`, `x.equals(null)` must return false.
+
+---
+
+## 2. `hashCode()` Method:
+
+- The `hashCode()` method returns an integer hash code representing the object's state.
+- Hash-based collections (`HashSet`, `HashMap`, `HashTable`) use `hashCode()` to quickly locate objects.
+
+### Overriding the `hashCode()` method:
+Whenever you override `equals()`, you should override `hashCode()` as well, ensuring that objects considered equal (`equals()` returns true) produce the same hash code.
+
+Here's a common implementation example:
+
+```java
+@Override
+public int hashCode() {
+    return Objects.hash(field1, field2);
+}
+```
+
+### Guidelines for implementing `hashCode()`:
+- Consistency: Multiple calls to `hashCode()` must consistently return the same integer during the object's lifetime (if the object's state doesn't change).
+- Equal objects must have identical hash codes.
+- Objects that differ can have the same hash code (although collisions should be minimized for performance).
+
+---
+
+## Important Relationship:
+- **If `obj1.equals(obj2)` is true, then `obj1.hashCode()` must equal `obj2.hashCode()`.**
+- If two hash codes differ, objects are definitely not equal.
+- If two hash codes are the same, objects may or may not be equal (collision possible), and `equals()` decides their equality.
+
+---
+
+## Why it matters:
+- Ensuring consistency between `equals()` and `hashCode()` is critical for correctness in collections like `HashSet` or `HashMap`.
+- If the relationship between these two methods breaks, it can lead to unexpected behaviors or failures in collections.
+
+---
+
+## Quick Recap Example:
+
+```java
+public class Employee {
+    private int id;
+    private String name;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Employee)) return false;
+        Employee emp = (Employee) o;
+        return id == emp.id && Objects.equals(name, emp.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name);
+    }
+}
+```
+
+This combination ensures correct behavior in all hash-based Java collections.
