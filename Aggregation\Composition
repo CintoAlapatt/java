@@ -1,0 +1,48 @@
+Aggregation
+
+Represents a "has-a" relationship between objects.
+Objects have an independent lifecycle.
+Weak association between objects.
+  
+Example:
+
+class Driver {
+    String name;
+}
+
+class Car {
+    Driver driver; // Car has a driver
+    void assignDriver(Driver driver) {
+        this.driver = driver;
+    }
+}
+
+Composition (Stronger form of aggregation)
+Stronger version of aggregation.
+Child object cannot exist without parent object (tightly coupled).
+
+
+Engine and Car: An engine is part of a car; it can’t exist separately.
+
+class Engine {
+    void start() { }
+}
+
+class Car {
+    Engine engine = new Engine(); // tightly coupled
+    void startCar() {
+        engine.start();
+    }
+}
+
+Aggregation vs Composition:
+Feature	Aggregation	Composition  
+Relation	"Has-a" (weak association)	         "Part-of" (Strong ownership)
+Lifetime	Independent	                          Dependent
+Example	  Car-Driver, Classroom-Students	      Human and Heart, Car and Engine
+Coupling	Loose	                                Strong
+
+Key Points:
+Aggregation represents a weak "has-a" relationship.
+Objects in Aggregation can exist independently.
+Improves modularity and flexibility in software design.
